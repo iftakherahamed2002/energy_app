@@ -1,0 +1,4 @@
+dash
+ploty
+pandas
+gunicorn
