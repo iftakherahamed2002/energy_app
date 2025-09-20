@@ -2,3 +2,7 @@ dash
 plotly
 pandas
 gunicorn
+dash-bootstrap-components
+xgboost
+scikit-learn
+tensorflow
