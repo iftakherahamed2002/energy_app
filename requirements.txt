@@ -6,3 +6,4 @@ dash-bootstrap-components
 xgboost
 scikit-learn
 tensorflow
+openpyxl
