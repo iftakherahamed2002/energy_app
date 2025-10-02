@@ -2,9 +2,8 @@ dash==2.17.1
 dash-bootstrap-components==1.6.0
 pandas==2.2.2
 numpy==1.26.4
-plotly==5.24.1
-gunicorn==22.0.0
+scikit-learn==1.5.2
 xgboost==2.1.1
-scikit-learn==1.4.2
-tensorflow-cpu==2.15.0
-protobuf==4.25.3
+torch==2.4.0
+transformers==4.44.0
+plotly==5.22.0
