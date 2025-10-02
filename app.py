@@ -590,13 +590,3 @@ from dash import Dash, dcc, html
 app = Dash(__name__)
 server = app.server   # Gunicorn এইটা ধরবে
 
-app.layout = html.Div([
-    html.H1("Energy App is Running ✅", style={"textAlign": "center"}),
-    dcc.Markdown("### Congratulations! আপনার Render Deploy এখন ঠিকঠাক কাজ করবে।")
-])
-
-import os
-
-if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 8050))  # Render এর PORT ধরবে
-    app.run_server(host="0.0.0.0", port=port)

@@ -13,3 +13,4 @@ COPY . .
 
 # Gunicorn দিয়ে run (Render needs $PORT)
 CMD ["gunicorn", "app:server", "--bind", "0.0.0.0:$PORT"]
+
