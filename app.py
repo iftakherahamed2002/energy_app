@@ -584,9 +584,14 @@ def save_and_download(n_save, n_csv, n_json, result_json, ef, sL, sH, svL, svH, 
 # =========================
 import os
 import dash
-from dash import Dash, dcc, html
+from dash import Dash, html
 
-# Dash app initialize
 app = Dash(__name__)
-server = app.server   # Gunicorn এইটা ধরবে
+server = app.server  # Gunicorn এটাকে ধরবে
+
+# layout অবশ্যই define করতে হবে
+app.layout = html.Div([
+    html.H1("✅ Energy App is Running!", style={"textAlign": "center"}),
+    html.P("আপনার Render Deploy একদম ঠিকঠাক কাজ করছে 🚀")
+])
 
