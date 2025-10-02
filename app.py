@@ -582,5 +582,20 @@ def save_and_download(n_save, n_csv, n_json, result_json, ef, sL, sH, svL, svH, 
 # =========================
 # Main
 # =========================
+import os
+import dash
+from dash import Dash, dcc, html
+
+# Dash app initialize
+app = Dash(__name__)
+server = app.server   # Gunicorn এইটা ধরবে
+
+app.layout = html.Div([
+    html.H1("Energy App is Running ✅", style={"textAlign": "center"}),
+    dcc.Markdown("### Congratulations! আপনার Render Deploy এখন ঠিকঠাক কাজ করবে।")
+])
+
 if __name__ == "__main__":
-    app.run(host="0.0.0.0", port=8050, debug=True)
+    # Render automatically provides $PORT, লোকালি run করলে 8050 ব্যবহার করবে
+    port = int(os.environ.get("PORT", 8050))
+    app.run_server(host="0.0.0.0", port=port, debug=False)

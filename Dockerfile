@@ -1,15 +1,15 @@
-# 1. কোন Python ব্যবহার করবে (3.10 fixed)
+# Use lightweight python image
 FROM python:3.10-slim
 
-# 2. কাজ করার ডিরেক্টরি সেট
+# Set working directory
 WORKDIR /app
 
-# 3. requirements install
+# Copy requirements and install
 COPY requirements.txt .
 RUN pip install --no-cache-dir -r requirements.txt
 
-# 4. পুরো কোড কপি
+# Copy all files
 COPY . .
 
-# 5. Run command (gunicorn দিয়ে app চালাবে)
+# Gunicorn দিয়ে run (Render needs $PORT)
 CMD ["gunicorn", "app:server", "--bind", "0.0.0.0:$PORT"]
