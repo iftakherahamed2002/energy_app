@@ -19,7 +19,7 @@ from dash import Dash, dcc, html, dash_table, Input, Output, State, ctx, no_upda
 import dash_bootstrap_components as dbc
 
 # ML – classic
-from sklearn.model_selection import train_test_split, KFold
+from sklearn.model_selection import KFold
 from sklearn.preprocessing import MinMaxScaler
 from sklearn.svm import SVR as SKSVR
 from xgboost import XGBRegressor
@@ -228,7 +228,7 @@ cv_controls = dbc.Card(dbc.CardBody([
     dbc.Button("Run 5-Fold CV", id="run_cv_btn", color="success"),
     html.Span(id="cv_status", className="ms-3 text-muted"),
     html.Hr(className="my-2"),
-    dcc.Graph(id="cv_bar_metrics"),               # metrics bar (MAE/RMSE/R2) per model
+    dcc.Graph(id="cv_bar_metrics"),
     dash_table.DataTable(
         id="cv_overview_table",
         columns=[{"name":"Model","id":"model"},{"name":"MAE","id":"mae"},
@@ -538,13 +538,11 @@ def run_cv(n_clicks, sim_json, mode, folds, limit, dl_flags):
     fig.update_layout(title=f"K-Fold Metrics (mode: {mode}, folds: {folds}, rows: {len(df):,})",
                       barmode="group", xaxis_title="Model", yaxis_title="Error (kWh)",
                       legend=dict(orientation="h", y=-0.2, x=0.5, xanchor="center"), height=420)
-    # add R2 line
     fig.add_trace(go.Scatter(x=dfm["model"], y=dfm["R2"], mode="lines+markers",
                              name="R²", marker=dict(symbol="diamond", size=9), yaxis="y2"))
     fig.update_layout(yaxis2=dict(title="R²", overlaying="y", side="right", range=[0,1]))
 
     status="Done."
-    # sort by MAE
     table = sorted(results, key=lambda r: r["mae"])
     return status, fig, table
 
@@ -583,4 +581,5 @@ def save_and_download(n_save, n_csv, n_json, result_json, ef, sL, sH, svL, svH, 
 # Main
 # =========================
 if __name__ == "__main__":
+    # Keep debug=True for local; Render will ignore this when using gunicorn via Procfile
     app.run(host="0.0.0.0", port=8050, debug=True)
