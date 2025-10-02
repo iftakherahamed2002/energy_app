@@ -595,7 +595,8 @@ app.layout = html.Div([
     dcc.Markdown("### Congratulations! আপনার Render Deploy এখন ঠিকঠাক কাজ করবে।")
 ])
 
+import os
+
 if __name__ == "__main__":
-    # Render automatically provides $PORT, লোকালি run করলে 8050 ব্যবহার করবে
-    port = int(os.environ.get("PORT", 8050))
-    app.run_server(host="0.0.0.0", port=port, debug=False)
+    port = int(os.environ.get("PORT", 8050))  # Render এর PORT ধরবে
+    app.run_server(host="0.0.0.0", port=port)
